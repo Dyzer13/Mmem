@@ -29,22 +29,21 @@ client.user.setGame(`.help`)
 });
 
 client.on('message', message => {
-    if(!message.channel.guild) return;
-var prefix = "$";
-if(message.content.startsWith('$bc')) {
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let copy = "S Bot";
-let request = `Requested By ${message.author.username}`;
-if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
-msg.react('✅')
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+              if(!message.channel.guild) return;
+    if(message.content.startsWith('$bc')) {
+    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+    let copy = "Dragon";
+    let request = `Requested By ${message.author.username}`;
+    if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+    msg.react('✅')
+    .then(() => msg.react('❌'))
+    .then(() =>msg.react('✅'))
+    
+    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+  let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
     let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
     reaction1.on("collect", r => {
     message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
@@ -56,7 +55,6 @@ let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
        .addField('Server', message.guild.name)
        .addField('Sender', message.author.username)
        .addField('Message', args)
-       .setImage("هنا حط رابط الصوره اللي بتظهر")
        .setThumbnail(message.author.avatarURL)
        .setFooter(copy, client.user.avatarURL);
     m.send({ embed: bc })
@@ -70,35 +68,6 @@ let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
     })
     }
     });
-
-const arraySort = require('array-sort'),
-      table = require('table');
-
-client.on('message' , async (message) => {
-
-    if(message.content.startsWith(prefix + "دعوات")) {
-
-  let invites = await message.guild.fetchInvites();
-
-    invites = invites.array();
-
-    arraySort(invites, 'uses', { reverse: true });
-
-    let possibleInvites = [['User Invited', 'Uses']];
-    invites.forEach(i => {
-      possibleInvites.push([i.inviter.username , i.uses]);
-    })
-    const embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setTitle("دعوات السيرفر")
-    .addField('المتصدرين' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
-    .addField('**شكرا لدعمكم المتواصل للسيرفر ♥**')
-    .setFooter('sk Bot', 'https://c.top4top.net/p_831fzcx71.png')
-    .setThumbnail(message.author.avatarURL)
-
-    message.channel.send(embed)
-    }
-});
 client.login('NDUxNTc5MDk3OTI4MzAyNTky.DfD_gQ.DzPu3fuPMGz0YZaOBgco_RtvSrg');
 
 
