@@ -523,7 +523,7 @@ let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
     }
     });
 
-client.login('NDUxNTc5MDk3OTI4MzAyNTky.DfD1lg.utQiBrLxlAN5yjnkASVTNhA003E');
+client.login('NDUxNTc5MDk3OTI4MzAyNTky.DfD_gQ.DzPu3fuPMGz0YZaOBgco_RtvSrg');
 
 
 
